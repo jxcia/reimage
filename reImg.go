@@ -42,9 +42,10 @@ func reImge(reImg string, html string) []string {
 
 }
 func downImg(url string) {
+
 	//配置下载的文件名，可以走一个函数
 	urlsp := strings.Split(url, "/")
-	filename := urlsp[len(urlsp)-1]
+	filename := "./img/" + urlsp[len(urlsp)-1]
 	// 开始请求图片地址
 	resp, err := http.Get(url)
 	if err != nil {
@@ -57,11 +58,13 @@ func downImg(url string) {
 	err2 := ioutil.WriteFile(filename, imgBytes, 0666)
 	if err2 != nil {
 		fmt.Println("下载失败！")
+
 	}
+	fmt.Println(url, "下载完成！")
 
 }
 func main() {
-	html := htmlGet("http://jandan.net/pic/MjAyMDA1MjItMjEx#comments", "jandan.net")
+	html := htmlGet("http://jandan.net/ooxx/MjAyMDA1MjMtMTUx#comments", "jandan.net")
 
 	urls := reImge(reImg, html)
 	for _, img := range urls {
